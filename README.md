@@ -1,5 +1,8 @@
 # 🚗 CoRoute API
 
+![CI](https://github.com/TON-USERNAME/coroute-api/actions/workflows/ci.yml/badge.svg)
+![Docker](https://github.com/TON-USERNAME/coroute-api/actions/workflows/ci.yml/badge.svg?job=docker)
+
 > Plateforme de covoiturage québécoise — API REST sécurisée avec authentification JWT, persistance MongoDB et déploiement Docker.
 
 ---
@@ -94,8 +97,8 @@ DELETE /trajets/{id}                   Supprimer un trajet 🔐
 ### Réservations
 
 ```
-POST   /trajets/{id}/reservations      Réserver une place 🔐
-GET    /trajets/{id}/reservations      Voir les réservations 🔐
+POST   /trajets/{id}/reservations       Réserver une place 🔐
+GET    /trajets/{id}/reservations       Voir les réservations 🔐
 DELETE /trajets/{id}/reservations/{rid} Annuler une réservation 🔐
 ```
 
@@ -204,8 +207,8 @@ mvn test -Dtest="InMongo*"
 
 ```yaml
 services:
-  api:       # API Java sur :8080
-  mongo:     # MongoDB sur :27017
+  api:            # API Java sur :8080
+  mongo:          # MongoDB sur :27017
   mongo-express:  # Interface web sur :8081
 ```
 
@@ -225,6 +228,7 @@ coroute-api/
 ├── src/
 │   ├── main/java/        ← Code source
 │   └── test/java/        ← Tests
+├── .github/workflows/    ← CI/CD GitHub Actions
 ├── Dockerfile            ← Image Docker de l'API
 ├── docker-compose.yml    ← Stack complète
 ├── pom.xml               ← Dépendances Maven
