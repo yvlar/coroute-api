@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ca.ulaval.coroute.api.controller.UtilisateurResourceIT
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.056 s -- in ca.ulaval.coroute.api.controller.UtilisateurResourceIT
