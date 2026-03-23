@@ -1,7 +1,7 @@
 # 🚗 CoRoute API
 
-![CI](https://github.com/TON-USERNAME/coroute-api/actions/workflows/ci.yml/badge.svg)
-![Docker](https://github.com/TON-USERNAME/coroute-api/actions/workflows/ci.yml/badge.svg?job=docker)
+![CI](https://github.com/yvlar/coroute-api/actions/workflows/ci.yml/badge.svg)
+![Docker](https://github.com/yvlar/coroute-api/actions/workflows/ci.yml/badge.svg?job=docker)
 
 > Plateforme de covoiturage québécoise — API REST sécurisée avec authentification JWT, persistance MongoDB et déploiement Docker.
 
