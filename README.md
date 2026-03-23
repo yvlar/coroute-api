@@ -239,9 +239,9 @@ coroute-api/
 
 ## 👤 Auteur
 
-Développé dans le cadre d'un projet personnel combinant Java, architecture REST et finance quantitative.
+Développé dans le cadre d'un projet personnel combinant Java, architecture REST .
 
-**Université Laval** — Programme de finance quantitative
+
 
 ---
 
