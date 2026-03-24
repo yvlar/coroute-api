@@ -46,7 +46,12 @@ public class Trajet {
 
     private transient ReservationFactory reservationFactory;
 
+    /**
+     * Constructeur vide requis par Morphia pour la désérialisation.
+     * Ne pas utiliser directement - utiliser le constructeur avec paramètres.
+     */
     protected Trajet() {
+        // Required by Morphia for deserialization
     }
 
     public Trajet(

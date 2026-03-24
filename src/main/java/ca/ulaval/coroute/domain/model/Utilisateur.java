@@ -20,8 +20,12 @@ public class Utilisateur {
     @Property
     private String motDePasseHash;
 
-    // Constructeur vide requis par Morphia
+    /**
+     * Constructeur vide requis par Morphia pour la désérialisation.
+     * Ne pas utiliser directement - utiliser le constructeur avec paramètres.
+     */
     protected Utilisateur() {
+        // Required by Morphia for deserialization
     }
 
     public Utilisateur(final String nom, final String email, final String candidatMotDePasseHash) {

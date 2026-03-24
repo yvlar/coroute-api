@@ -4,6 +4,7 @@ import ca.ulaval.coroute.domain.model.Trajet;
 import ca.ulaval.coroute.domain.model.TrajetFactory;
 import dev.morphia.Datastore;
 import dev.morphia.query.filters.Filters;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import jakarta.inject.Inject;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class MongoTrajetRepository implements TrajetRepository {
   private final TrajetFactory trajetFactory;
 
   @Inject
+  @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "Injected by DI, thread-safe")
   public MongoTrajetRepository(final Datastore datastore, final TrajetFactory trajetFactory) {
     this.datastore = datastore;
     this.trajetFactory = trajetFactory;
@@ -29,8 +31,7 @@ public class MongoTrajetRepository implements TrajetRepository {
 
   @Override
   public Optional<Trajet> findById(final UUID trajetId) {
-    final Trajet trajet =
-        this.datastore.find(Trajet.class).filter(Filters.eq("_id", trajetId)).first();
+    final Trajet trajet = this.datastore.find(Trajet.class).filter(Filters.eq("_id", trajetId)).first();
     if (trajet != null) {
       trajet.setReservationFactory(trajetFactory.getReservationFactory());
     }

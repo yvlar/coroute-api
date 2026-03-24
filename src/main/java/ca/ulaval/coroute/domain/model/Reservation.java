@@ -17,8 +17,12 @@ public class Reservation {
     @Property
     private int nombrePlaces;
 
-    // Constructeur vide requis par Morphia
+    /**
+     * Constructeur vide requis par Morphia pour la désérialisation.
+     * Ne pas utiliser directement - utiliser le constructeur avec paramètres.
+     */
     protected Reservation() {
+        // Required by Morphia for deserialization
     }
 
     public Reservation(final String candidatPassagerId, final int nombrePlaces) {

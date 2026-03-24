@@ -8,6 +8,7 @@ import ca.ulaval.coroute.dto.request.TrajetCreateRequest;
 import ca.ulaval.coroute.dto.response.ReservationResponse;
 import ca.ulaval.coroute.dto.response.TrajetResponse;
 import ca.ulaval.coroute.repository.TrajetRepository;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import jakarta.inject.Inject;
 import java.util.List;
 import java.util.UUID;
@@ -18,6 +19,7 @@ public class TrajetServiceImpl implements TrajetService {
   private final TrajetFactory trajetFactory;
 
   @Inject
+  @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "Injected by DI framework")
   public TrajetServiceImpl(
       final TrajetRepository trajetRepository, final TrajetFactory trajetFactory) {
     this.trajetRepository = trajetRepository;

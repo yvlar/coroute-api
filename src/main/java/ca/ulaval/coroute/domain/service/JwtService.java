@@ -9,7 +9,7 @@ import java.util.Date;
 import javax.crypto.SecretKey;
 
 @Singleton
-public class JwtService {
+public final class JwtService {
 
   private static final String SECRET = "coroute-secret-key-must-be-at-least-32-chars!!";
   private static final long EXPIRATION_MS = 86_400_000L; // 24 heures
@@ -17,7 +17,11 @@ public class JwtService {
   private final SecretKey key;
 
   public JwtService() {
-    this.key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
+    try {
+      this.key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
+    } catch (Exception e) {
+      throw new IllegalStateException("Failed to initialize JWT key", e);
+    }
   }
 
   public String genererToken(final String utilisateurId, final String email) {

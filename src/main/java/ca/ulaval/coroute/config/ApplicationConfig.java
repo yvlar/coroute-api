@@ -69,15 +69,14 @@ public class ApplicationConfig extends ResourceConfig {
     private final ObjectMapper mapper;
 
     public JacksonConfig() {
-      this.mapper =
-          new ObjectMapper()
-              .registerModule(new JavaTimeModule())
-              .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+      this.mapper = new ObjectMapper()
+          .registerModule(new JavaTimeModule())
+          .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
     @Override
     public ObjectMapper getContext(final Class<?> type) {
-      return mapper;
+      return mapper.copy();
     }
   }
 }
