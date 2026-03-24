@@ -12,47 +12,42 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class UtilisateurServiceImpl implements UtilisateurService {
 
-    private final UtilisateurRepository utilisateurRepository;
-    private final JwtService jwtService;
+  private final UtilisateurRepository utilisateurRepository;
+  private final JwtService jwtService;
 
-    @Inject
-    public UtilisateurServiceImpl(final UtilisateurRepository utilisateurRepository,
-                                   final JwtService jwtService) {
-        this.utilisateurRepository = utilisateurRepository;
-        this.jwtService = jwtService;
+  @Inject
+  public UtilisateurServiceImpl(
+      final UtilisateurRepository utilisateurRepository, final JwtService jwtService) {
+    this.utilisateurRepository = utilisateurRepository;
+    this.jwtService = jwtService;
+  }
+
+  @Override
+  public void inscrire(final InscriptionRequest request) {
+    if (this.utilisateurRepository.findByEmail(request.email()).isPresent()) {
+      throw new UtilisateurDejaExisteException(request.email());
     }
 
-    @Override
-    public void inscrire(final InscriptionRequest request) {
-        if (this.utilisateurRepository.findByEmail(request.email()).isPresent()) {
-            throw new UtilisateurDejaExisteException(request.email());
-        }
+    final String motDePasseHash = BCrypt.hashpw(request.motDePasse(), BCrypt.gensalt());
+    final Utilisateur utilisateur = new Utilisateur(request.nom(), request.email(), motDePasseHash);
 
-        final String motDePasseHash = BCrypt.hashpw(request.motDePasse(), BCrypt.gensalt());
-        final Utilisateur utilisateur = new Utilisateur(
-                request.nom(),
-                request.email(),
-                motDePasseHash
-        );
+    this.utilisateurRepository.save(utilisateur);
+  }
 
-        this.utilisateurRepository.save(utilisateur);
+  @Override
+  public TokenResponse connecter(final ConnexionRequest request) {
+    final Utilisateur utilisateur =
+        this.utilisateurRepository
+            .findByEmail(request.email())
+            .orElseThrow(IdentifiantsInvalidesException::new);
+
+    if (!BCrypt.checkpw(request.motDePasse(), utilisateur.getMotDePasseHash())) {
+      throw new IdentifiantsInvalidesException();
     }
 
-    @Override
-    public TokenResponse connecter(final ConnexionRequest request) {
-        final Utilisateur utilisateur = this.utilisateurRepository
-                .findByEmail(request.email())
-                .orElseThrow(IdentifiantsInvalidesException::new);
+    final String token =
+        this.jwtService.genererToken(utilisateur.getId().toString(), utilisateur.getEmail());
 
-        if (!BCrypt.checkpw(request.motDePasse(), utilisateur.getMotDePasseHash())) {
-            throw new IdentifiantsInvalidesException();
-        }
-
-        final String token = this.jwtService.genererToken(
-                utilisateur.getId().toString(),
-                utilisateur.getEmail()
-        );
-
-        return new TokenResponse(token);
-    }
+    return new TokenResponse(token);
+  }
 }

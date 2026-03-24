@@ -8,14 +8,13 @@ import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
 @Provider
-public class AccesInterditExceptionMapper
-        implements ExceptionMapper<AccesInterditException> {
+public class AccesInterditExceptionMapper implements ExceptionMapper<AccesInterditException> {
 
-    @Override
-    public Response toResponse(final AccesInterditException exception) {
-        return Response.status(Response.Status.FORBIDDEN)
-                .entity(new ErrorResponse(exception.getMessage()))
-                .type(MediaType.APPLICATION_JSON)
-                .build();
-    }
+  @Override
+  public Response toResponse(final AccesInterditException exception) {
+    return Response.status(Response.Status.FORBIDDEN)
+        .entity(new ErrorResponse(exception.getMessage()))
+        .type(MediaType.APPLICATION_JSON)
+        .build();
+  }
 }

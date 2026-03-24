@@ -27,15 +27,14 @@ public class MongoUtilisateurRepository implements UtilisateurRepository {
         return Optional.ofNullable(
                 this.datastore.find(Utilisateur.class)
                         .filter(Filters.eq("_id", id))
-                        .first()
-        );
+                        .first());
     }
 
-   @Override
-public Optional<Utilisateur> findByEmail(final String email) {
-    return this.datastore.find(Utilisateur.class)
-            .stream()
-            .filter(u -> u.getEmail().equalsIgnoreCase(email))
-            .findFirst();
-}
+    @Override
+    public Optional<Utilisateur> findByEmail(final String email) {
+        return this.datastore.find(Utilisateur.class)
+                .stream()
+                .filter(u -> u.getEmail().equalsIgnoreCase(email))
+                .findFirst();
+    }
 }

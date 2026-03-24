@@ -9,13 +9,13 @@ import jakarta.ws.rs.ext.Provider;
 
 @Provider
 public class PlacesInsuffisantesExceptionMapper
-        implements ExceptionMapper<PlacesInsuffisantesException> {
+    implements ExceptionMapper<PlacesInsuffisantesException> {
 
-    @Override
-    public Response toResponse(final PlacesInsuffisantesException exception) {
-        return Response.status(Response.Status.CONFLICT)
-                .entity(new ErrorResponse(exception.getMessage()))
-                .type(MediaType.APPLICATION_JSON)
-                .build();
-    }
+  @Override
+  public Response toResponse(final PlacesInsuffisantesException exception) {
+    return Response.status(Response.Status.CONFLICT)
+        .entity(new ErrorResponse(exception.getMessage()))
+        .type(MediaType.APPLICATION_JSON)
+        .build();
+  }
 }
