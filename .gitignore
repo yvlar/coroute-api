@@ -193,3 +193,4 @@ credentials/
 target/dependency-check-report.html
 target/dependency-check-report.json
 .owasp/
+target/
