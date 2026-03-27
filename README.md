@@ -1,7 +1,12 @@
 # 🚗 CoRoute API
 
 ![CI](https://github.com/yvlar/coroute-api/actions/workflows/ci.yml/badge.svg)
-![Docker](https://github.com/yvlar/coroute-api/actions/workflows/ci.yml/badge.svg?job=docker)
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
+![Coverage](https://img.shields.io/badge/coverage-80%25-green)
+![PMD](https://img.shields.io/badge/PMD-passing-brightgreen)
+![Checkstyle](https://img.shields.io/badge/Checkstyle-passing-brightgreen)
+![SpotBugs](https://img.shields.io/badge/SpotBugs-0%20bugs-brightgreen)
+![OWASP](https://img.shields.io/badge/OWASP-checked-blue)
 
 > Plateforme de covoiturage québécoise — API REST sécurisée avec authentification JWT, persistance MongoDB et déploiement Docker.
 
@@ -30,6 +35,8 @@
 | Base de données | MongoDB + Morphia ODM |
 | Build | Maven |
 | Tests | JUnit 5 + Mockito + Testcontainers |
+| Qualité du code | PMD, Checkstyle, SpotBugs, JaCoCo |
+| Sécurité des dépendances | OWASP Dependency-Check |
 | Conteneurisation | Docker + Docker Compose |
 
 ---
@@ -177,7 +184,9 @@ ca.ulaval.coroute/
 
 ---
 
-## 🧪 Tests
+## 🧪 Tests et Qualité du code
+
+### Tests
 
 ```bash
 # Tous les tests
@@ -200,6 +209,40 @@ mvn test -Dtest="InMongo*"
 | Unitaires | Services, Mappers, Modèles, Repositories |
 | Intégration | Tous les endpoints HTTP |
 | Testcontainers | Repositories MongoDB réels |
+
+### Analyse de code
+
+```bash
+# Vérifier tous les outils de qualité
+mvn verify
+
+# PMD - Détection de bugs et mauvaises pratiques
+mvn pmd:check
+
+# Checkstyle - Vérification du style de code
+mvn checkstyle:check
+
+# SpotBugs - Détection de bugs potentiels
+mvn spotbugs:check
+
+# JaCoCo - Rapport de couverture de code
+mvn jacoco:report
+# Rapport disponible dans target/site/jacoco/index.html
+
+# OWASP Dependency-Check - Scan des vulnérabilités
+mvn dependency-check:check
+# Rapport disponible dans target/dependency-check-report.html
+```
+
+### Standards de qualité
+
+| Outil | Configuration | Objectif |
+|---|---|---|
+| **PMD** | `custom_pmd_ruleset.xml` | Détection de code smell et anti-patterns |
+| **Checkstyle** | `custom_sun_checks.xml` | Style de code (max 120 caractères/ligne) |
+| **SpotBugs** | Niveau Medium | Détection de bugs de sécurité et performance |
+| **JaCoCo** | Couverture minimale 80% | Mesure de la couverture des tests |
+| **OWASP** | CVSS ≥ 7 = échec | Scan des vulnérabilités dans les dépendances |
 
 ---
 

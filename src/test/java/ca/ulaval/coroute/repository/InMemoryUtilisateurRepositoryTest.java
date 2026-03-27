@@ -10,22 +10,20 @@ import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public abstract class UtilisateurRepositoryTest {
+public class InMemoryUtilisateurRepositoryTest {
 
   private static final String NOM = "Marc Tremblay";
   private static final String EMAIL = "marc@coroute.ca";
   private static final String MOT_DE_PASSE_HASH = "hash-abc-123";
 
-  protected UtilisateurRepository repository;
-
-  protected abstract UtilisateurRepository createUtilisateurRepository();
+  private InMemoryUtilisateurRepository repository;
 
   @BeforeEach
   void setUp() {
-    this.repository = createUtilisateurRepository();
+    this.repository = new InMemoryUtilisateurRepository();
   }
 
-  // ─── save / findById ────────────────────────────────────────────────
+  // ── save / findById ──────────────────────────────────────────────────
 
   @Test
   void givenUtilisateur_whenSave_thenTrouvableParId() {
@@ -35,6 +33,7 @@ public abstract class UtilisateurRepositoryTest {
 
     final Optional<Utilisateur> result = repository.findById(utilisateur.getId());
     assertTrue(result.isPresent());
+    assertEquals(EMAIL, result.get().getEmail());
   }
 
   @Test
@@ -43,7 +42,7 @@ public abstract class UtilisateurRepositoryTest {
     assertFalse(result.isPresent());
   }
 
-  // ─── findByEmail ─────────────────────────────────────────────────────
+  // ── findByEmail ──────────────────────────────────────────────────────
 
   @Test
   void givenUtilisateur_whenFindByEmail_thenRetourneUtilisateur() {

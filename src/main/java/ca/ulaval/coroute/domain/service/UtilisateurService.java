@@ -6,7 +6,7 @@ import ca.ulaval.coroute.dto.response.TokenResponse;
 
 public interface UtilisateurService {
 
-    void inscrire(InscriptionRequest request);
+  void inscrire(InscriptionRequest request);
 
-    TokenResponse connecter(ConnexionRequest request);
+  TokenResponse connecter(ConnexionRequest request);
 }

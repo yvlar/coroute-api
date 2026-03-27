@@ -4,7 +4,6 @@ import ca.ulaval.coroute.dto.request.ReservationCreateRequest;
 import ca.ulaval.coroute.dto.request.TrajetCreateRequest;
 import ca.ulaval.coroute.dto.response.ReservationResponse;
 import ca.ulaval.coroute.dto.response.TrajetResponse;
-
 import java.util.List;
 import java.util.UUID;
 
