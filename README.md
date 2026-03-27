@@ -6,6 +6,7 @@
 ![PMD](https://img.shields.io/badge/PMD-passing-brightgreen)
 ![Checkstyle](https://img.shields.io/badge/Checkstyle-passing-brightgreen)
 ![SpotBugs](https://img.shields.io/badge/SpotBugs-0%20bugs-brightgreen)
+![OWASP](https://img.shields.io/badge/OWASP-checked-blue)
 
 > Plateforme de covoiturage québécoise — API REST sécurisée avec authentification JWT, persistance MongoDB et déploiement Docker.
 
@@ -35,6 +36,7 @@
 | Build | Maven |
 | Tests | JUnit 5 + Mockito + Testcontainers |
 | Qualité du code | PMD, Checkstyle, SpotBugs, JaCoCo |
+| Sécurité des dépendances | OWASP Dependency-Check |
 | Conteneurisation | Docker + Docker Compose |
 
 ---
@@ -226,6 +228,10 @@ mvn spotbugs:check
 # JaCoCo - Rapport de couverture de code
 mvn jacoco:report
 # Rapport disponible dans target/site/jacoco/index.html
+
+# OWASP Dependency-Check - Scan des vulnérabilités
+mvn dependency-check:check
+# Rapport disponible dans target/dependency-check-report.html
 ```
 
 ### Standards de qualité
@@ -236,6 +242,7 @@ mvn jacoco:report
 | **Checkstyle** | `custom_sun_checks.xml` | Style de code (max 120 caractères/ligne) |
 | **SpotBugs** | Niveau Medium | Détection de bugs de sécurité et performance |
 | **JaCoCo** | Couverture minimale 80% | Mesure de la couverture des tests |
+| **OWASP** | CVSS ≥ 7 = échec | Scan des vulnérabilités dans les dépendances |
 
 ---
 

@@ -185,3 +185,11 @@ application-local.properties
 *.jks
 secrets/
 credentials/
+
+
+# ─────────────────────────────────────────────────────────────────────────────────────
+# Security Reports - OWASP Dependency Check
+# ─────────────────────────────────────────────────────────────────────────────────────
+target/dependency-check-report.html
+target/dependency-check-report.json
+.owasp/

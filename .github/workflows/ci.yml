@@ -36,6 +36,9 @@ jobs:
       - name: 🐛 SpotBugs Check
         run: mvn spotbugs:check
 
+      - name: 🔒 OWASP Dependency Check
+        run: mvn dependency-check:check
+
       - name: 🧪 Tests unitaires
         run: mvn test -Dtest="*Test" --no-transfer-progress
 
@@ -64,6 +67,13 @@ jobs:
         with:
           name: coverage-report
           path: target/site/jacoco/
+
+      - name: 🔒 Upload rapport OWASP
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: owasp-report
+          path: target/dependency-check-report.html
 
   # ── Docker Build ───────────────────────────────────────────────────────
   docker:
