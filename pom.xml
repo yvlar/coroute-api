@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Core Dependencies -->
-        <jersey.version>3.1.3</jersey.version>
+        <jersey.version>4.0.2</jersey.version>
         <jackson.version>2.15.2</jackson.version>
         <jwt.version>0.12.5</jwt.version>
         <jbcrypt.version>0.4</jbcrypt.version>
