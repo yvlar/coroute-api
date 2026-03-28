@@ -89,7 +89,7 @@ public class Trajet {
 
     public UUID ajouterReservation(final String passagerId, final int nombrePlaces) {
         if (nombrePlaces > this.placesDisponibles) {
-            throw new PlacesInsuffisantesException();
+            throw new PlacesInsuffisantesException(this.placesDisponibles, nombrePlaces);
         }
         final Reservation reservation = this.reservationFactory.creer(passagerId, nombrePlaces);
         this.reservations.add(reservation);
@@ -100,7 +100,7 @@ public class Trajet {
     public void annulerReservation(final UUID reservationId, final String candidatPassagerId) {
         final Reservation reservation = this.trouverReservation(reservationId);
         if (!reservation.appartientA(candidatPassagerId)) {
-            throw new AccesInterditException();
+            throw new AccesInterditException("annuler la réservation d'un autre passager");
         }
         this.reservations.remove(reservation);
         this.placesDisponibles += reservation.getNombrePlaces();
@@ -113,7 +113,7 @@ public class Trajet {
 
     public void verifierProprietaire(final String candidatConducteurId) {
         if (!this.conducteurId.equals(candidatConducteurId)) {
-            throw new AccesInterditException();
+            throw new AccesInterditException("accéder aux réservations d'un trajet dont vous n'êtes pas le conducteur");
         }
     }
 
