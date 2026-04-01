@@ -3,6 +3,7 @@ package ca.ulaval.coroute.config;
 import ca.ulaval.coroute.domain.model.ReservationFactory;
 import ca.ulaval.coroute.domain.model.TrajetFactory;
 import ca.ulaval.coroute.domain.service.JwtService;
+import ca.ulaval.coroute.domain.service.MatchingService;
 import ca.ulaval.coroute.domain.service.TrajetService;
 import ca.ulaval.coroute.domain.service.TrajetServiceImpl;
 import ca.ulaval.coroute.domain.service.UtilisateurService;
@@ -30,6 +31,7 @@ public class ApplicationConfig extends ResourceConfig {
         "ca.ulaval.coroute.config");
 
     register(JacksonConfig.class);
+    register(CorsFilter.class);
 
     register(
         new AbstractBinder() {
@@ -59,6 +61,8 @@ public class ApplicationConfig extends ResourceConfig {
             bind(UtilisateurServiceImpl.class).to(UtilisateurService.class).in(Singleton.class);
 
             bind(JwtService.class).to(JwtService.class).in(Singleton.class);
+
+            bind(MatchingService.class).to(MatchingService.class).in(Singleton.class);
           }
         });
   }

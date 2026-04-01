@@ -41,41 +41,43 @@ public class TrajetServiceImplTest {
   private static final String CONDUCTEUR_ID = "conducteur-123";
   private static final String PASSAGER_ID = "passager-456";
 
-  private static final TrajetCreateRequest TRAJET_PONCTUEL_REQUEST =
-      new TrajetCreateRequest(
-          "Québec",
-          "Montréal",
-          LocalDate.of(2026, 4, 1),
-          LocalTime.of(8, 30),
-          3,
-          20.0,
-          TrajetType.PONCTUEL,
-          null,
-          null,
-          null);
+  private static final TrajetCreateRequest TRAJET_PONCTUEL_REQUEST = new TrajetCreateRequest(
+      "Québec",
+      "Montréal",
+      LocalDate.of(2026, 4, 1),
+      LocalTime.of(8, 30),
+      3,
+      20.0,
+      TrajetType.PONCTUEL,
+      null,
+      null,
+      null);
 
-  private static final TrajetCreateRequest TRAJET_REGULIER_REQUEST =
-      new TrajetCreateRequest(
-          "Roxton",
-          "Drummondville",
-          null,
-          LocalTime.of(7, 15),
-          2,
-          8.0,
-          TrajetType.REGULIER,
-          List.of(JourSemaine.LUNDI, JourSemaine.VENDREDI),
-          LocalDate.of(2026, 4, 1),
-          LocalDate.of(2026, 6, 30));
+  private static final TrajetCreateRequest TRAJET_REGULIER_REQUEST = new TrajetCreateRequest(
+      "Roxton",
+      "Drummondville",
+      null,
+      LocalTime.of(7, 15),
+      2,
+      8.0,
+      TrajetType.REGULIER,
+      List.of(JourSemaine.LUNDI, JourSemaine.VENDREDI),
+      LocalDate.of(2026, 4, 1),
+      LocalDate.of(2026, 6, 30));
 
-  private static final ReservationCreateRequest RESERVATION_CREATE_REQUEST =
-      new ReservationCreateRequest(1);
+  private static final ReservationCreateRequest RESERVATION_CREATE_REQUEST = new ReservationCreateRequest(1);
 
-  @Mock private TrajetRepository trajetRepository;
-  @Mock private TrajetFactory trajetFactory;
-  @Mock private Trajet trajetMock;
-  @Mock private Reservation reservationMock;
+  @Mock
+  private TrajetRepository trajetRepository;
+  @Mock
+  private TrajetFactory trajetFactory;
+  @Mock
+  private Trajet trajetMock;
+  @Mock
+  private Reservation reservationMock;
 
-  @InjectMocks private TrajetServiceImpl trajetService;
+  @InjectMocks
+  private TrajetServiceImpl trajetService;
 
   @BeforeEach
   void setUp() {
@@ -187,8 +189,7 @@ public class TrajetServiceImplTest {
     when(trajetRepository.findById(TRAJET_ID)).thenReturn(Optional.of(trajetMock));
     when(trajetMock.ajouterReservation(PASSAGER_ID, 1)).thenReturn(RESERVATION_ID);
 
-    final UUID result =
-        trajetService.addReservation(TRAJET_ID, PASSAGER_ID, RESERVATION_CREATE_REQUEST);
+    final UUID result = trajetService.addReservation(TRAJET_ID, PASSAGER_ID, RESERVATION_CREATE_REQUEST);
 
     assertEquals(RESERVATION_ID, result);
     verify(trajetRepository).save(trajetMock);
@@ -234,8 +235,7 @@ public class TrajetServiceImplTest {
     when(reservationMock.getPassagerId()).thenReturn(PASSAGER_ID);
     when(reservationMock.getNombrePlaces()).thenReturn(1);
 
-    final List<ReservationResponse> result =
-        trajetService.getReservations(TRAJET_ID, CONDUCTEUR_ID);
+    final List<ReservationResponse> result = trajetService.getReservations(TRAJET_ID, CONDUCTEUR_ID);
 
     assertAll(
         () -> assertEquals(1, result.size()),

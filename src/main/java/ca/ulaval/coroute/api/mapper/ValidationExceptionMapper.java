@@ -14,10 +14,9 @@ public class ValidationExceptionMapper implements ExceptionMapper<ConstraintViol
 
   @Override
   public Response toResponse(final ConstraintViolationException exception) {
-    final String message =
-        exception.getConstraintViolations().stream()
-            .map(ConstraintViolation::getMessage)
-            .collect(Collectors.joining(", "));
+    final String message = exception.getConstraintViolations().stream()
+        .map(ConstraintViolation::getMessage)
+        .collect(Collectors.joining(", "));
 
     return Response.status(Response.Status.BAD_REQUEST)
         .entity(new ErrorResponse(message))

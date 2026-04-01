@@ -8,9 +8,23 @@
         }
     ],
     "java.configuration.updateBuildConfiguration": "interactive",
-    "java.checkstyle.configuration": "${workspaceFolder}/checkstyle.xml",
+    "java.checkstyle.configuration": "${workspaceFolder}/custom_sun_checks.xml",
     "java.checkstyle.version": "9.3",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.format.onType.enabled": true,
+    // MODIFIÉ : chemin complet avec ${workspaceFolder}
+    "java.format.settings.url": "${workspaceFolder}/eclipse-formatter.xml",
+    // AJOUTÉ : nom du profil dans le fichier XML
+    "java.format.settings.profile": "coroute",
     "editor.formatOnSave": true,
-    "files.saveConflictResolution": "overwriteFileOnDisk",
-    "java.compile.nullAnalysis.mode": "automatic"
+    "editor.formatOnPaste": true,
+    // Indentation avec espaces (FileTabCharacter dans ton checkstyle)
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    // Longueur de ligne max à 120 (LineLength dans ton checkstyle)
+    "editor.rulers": [
+        120
+    ],
+    "editor.wordWrapColumn": 120,
+    "files.saveConflictResolution": "overwriteFileOnDisk"
 }

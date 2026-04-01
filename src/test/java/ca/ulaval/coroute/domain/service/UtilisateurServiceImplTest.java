@@ -32,16 +32,18 @@ public class UtilisateurServiceImplTest {
   private static final String MOT_DE_PASSE = "password123";
   private static final String TOKEN = "jwt.token.ici";
 
-  private static final InscriptionRequest INSCRIPTION_REQUEST =
-      new InscriptionRequest(NOM, EMAIL, MOT_DE_PASSE);
-  private static final ConnexionRequest CONNEXION_REQUEST =
-      new ConnexionRequest(EMAIL, MOT_DE_PASSE);
+  private static final InscriptionRequest INSCRIPTION_REQUEST = new InscriptionRequest(NOM, EMAIL, MOT_DE_PASSE);
+  private static final ConnexionRequest CONNEXION_REQUEST = new ConnexionRequest(EMAIL, MOT_DE_PASSE);
 
-  @Mock private UtilisateurRepository utilisateurRepository;
-  @Mock private JwtService jwtService;
-  @Mock private Utilisateur utilisateurMock;
+  @Mock
+  private UtilisateurRepository utilisateurRepository;
+  @Mock
+  private JwtService jwtService;
+  @Mock
+  private Utilisateur utilisateurMock;
 
-  @InjectMocks private UtilisateurServiceImpl utilisateurService;
+  @InjectMocks
+  private UtilisateurServiceImpl utilisateurService;
 
   // ─── inscrire ────────────────────────────────────────────────────────
 
