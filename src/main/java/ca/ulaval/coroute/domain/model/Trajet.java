@@ -52,6 +52,8 @@ public class Trajet {
      */
     protected Trajet() {
         // Required by Morphia for deserialization
+        this.reservations = new ArrayList<>();
+        this.joursRecurrence = new ArrayList<>();
     }
 
     public Trajet(
