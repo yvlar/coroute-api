@@ -25,7 +25,7 @@ public final class Main {
             new Thread(
                 () -> {
                   System.out.println("Arrêt du serveur...");
-                  server.stop();
+                  server.shutdown();
                   latch.countDown();
                 }));
 
