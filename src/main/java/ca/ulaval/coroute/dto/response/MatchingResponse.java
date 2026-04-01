@@ -22,4 +22,13 @@ public record MatchingResponse(
         LocalDate date,
         LocalDate dateDebut,
         LocalDate dateFin) {
+
+    public MatchingResponse {
+        joursCompatibles = joursCompatibles != null ? List.copyOf(joursCompatibles) : null;
+    }
+
+    @Override
+    public List<JourSemaine> joursCompatibles() {
+        return joursCompatibles != null ? List.copyOf(joursCompatibles) : null;
+    }
 }
