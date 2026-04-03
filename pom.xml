@@ -37,7 +37,7 @@
         <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
         <maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
         <fmt-maven-plugin.version>2.21.1</fmt-maven-plugin.version>
-        <maven-pmd-plugin.version>3.22.0</maven-pmd-plugin.version>
+        <maven-pmd-plugin.version>3.28.0</maven-pmd-plugin.version>
         <spotbugs-maven-plugin.version>4.8.3.1</spotbugs-maven-plugin.version>
         <maven-shade-plugin.version>3.6.2</maven-shade-plugin.version>
         <dependency-check-maven.version>11.1.1</dependency-check-maven.version>
