@@ -51,10 +51,8 @@ public class MatchingService {
         if (joursRecherches == null || joursRecherches.isEmpty()) {
             return true;
         }
-        if (TrajetType.PONCTUEL.equals(trajet.getType())) {
-            return true;
-        }
-        return trajet.getJoursRecurrence().stream()
+        return TrajetType.PONCTUEL.equals(trajet.getType())
+                || trajet.getJoursRecurrence().stream()
                 .anyMatch(joursRecherches::contains);
     }
 

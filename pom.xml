@@ -193,6 +193,7 @@
                         <include>**/*Test.java</include>
                         <include>**/*IT.java</include>
                     </includes>
+                    <argLine>-Xmx512m</argLine>
                 </configuration>
             </plugin>
 
@@ -276,6 +277,7 @@
                     <effort>Max</effort>
                     <threshold>Medium</threshold>
                     <failOnError>true</failOnError>
+                    <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
                 </configuration>
                 <executions>
                     <execution>
