@@ -1,13 +1,18 @@
 package ca.ulaval.coroute.config;
 
+import ca.ulaval.coroute.domain.model.DemandeFactory;
 import ca.ulaval.coroute.domain.model.ReservationFactory;
 import ca.ulaval.coroute.domain.model.TrajetFactory;
+import ca.ulaval.coroute.domain.service.DemandeService;
+import ca.ulaval.coroute.domain.service.DemandeServiceImpl;
 import ca.ulaval.coroute.domain.service.JwtService;
 import ca.ulaval.coroute.domain.service.MatchingService;
 import ca.ulaval.coroute.domain.service.TrajetService;
 import ca.ulaval.coroute.domain.service.TrajetServiceImpl;
 import ca.ulaval.coroute.domain.service.UtilisateurService;
 import ca.ulaval.coroute.domain.service.UtilisateurServiceImpl;
+import ca.ulaval.coroute.repository.DemandeRepository;
+import ca.ulaval.coroute.repository.MongoDemandeRepository;
 import ca.ulaval.coroute.repository.MongoTrajetRepository;
 import ca.ulaval.coroute.repository.MongoUtilisateurRepository;
 import ca.ulaval.coroute.repository.TrajetRepository;
@@ -40,29 +45,31 @@ public class ApplicationConfig extends ResourceConfig {
             // MongoDB config
             bind(MongoConfig.class).to(MongoConfig.class).in(Singleton.class);
 
-            // Datastore Morphia — clé pour l'injection dans les repositories
+            // Datastore Morphia
             bindFactory(DatastoreFactory.class).to(Datastore.class).in(Singleton.class);
 
             // Repositories Mongo
             bind(MongoTrajetRepository.class).to(TrajetRepository.class).in(Singleton.class);
+            bind(MongoUtilisateurRepository.class).to(UtilisateurRepository.class).in(Singleton.class);
 
-            bind(MongoUtilisateurRepository.class)
-                .to(UtilisateurRepository.class)
-                .in(Singleton.class);
+            // ── NOUVEAU ──
+            bind(MongoDemandeRepository.class).to(DemandeRepository.class).in(Singleton.class);
 
             // Factories
             bind(ReservationFactory.class).to(ReservationFactory.class).in(Singleton.class);
-
             bind(TrajetFactory.class).to(TrajetFactory.class).in(Singleton.class);
+
+            // ── NOUVEAU ──
+            bind(DemandeFactory.class).to(DemandeFactory.class).in(Singleton.class);
 
             // Services
             bind(TrajetServiceImpl.class).to(TrajetService.class).in(Singleton.class);
-
             bind(UtilisateurServiceImpl.class).to(UtilisateurService.class).in(Singleton.class);
-
             bind(JwtService.class).to(JwtService.class).in(Singleton.class);
-
             bind(MatchingService.class).to(MatchingService.class).in(Singleton.class);
+
+            // ── NOUVEAU ──
+            bind(DemandeServiceImpl.class).to(DemandeService.class).in(Singleton.class);
           }
         });
   }
